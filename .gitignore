@@ -12,3 +12,5 @@ dist/
 
 # Testing
 test.js
+
+.firebase
