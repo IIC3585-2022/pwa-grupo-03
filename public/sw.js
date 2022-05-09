@@ -64,18 +64,23 @@ self.addEventListener('install', evt => {
 
 /* Activate */
 self.addEventListener('activate', evt => {
+
   // Borrando cache obsoleto
+  console.log('activate')
   evt.waitUntil(caches.keys().then((keyList) => {
     return Promise.all(keyList.map((key) => {
       if (ALL_CACHE.includes(key)) return
       return caches.delete(key)
     }))
   }));
+
 });
 
 /* Manejo de fetch */
 self.addEventListener('fetch', evt => {
+
   const response = caches.match(evt.request).then(res => {
+
     if (res) return res  // Estrategia cache-first
 
 
